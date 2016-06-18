@@ -7,13 +7,21 @@ import TimePicker from 'material-ui/TimePicker';
 import {toggleRoute, setRouteProperty} from '../actions/routes'
 import {play, pause} from '../actions/controls'
 import {connect} from 'react-redux'
+import * as appTypes from '~/enum/app-types'
 import _ from 'lodash'
 import moment from 'moment'
 
 const Route = React.createClass({
 
 	propTypes: {
-		data: React.PropTypes.object.isRequired
+		data: React.PropTypes.object.isRequired,
+		showDetails: React.PropTypes.bool.isRequired,
+	},
+
+	getDefaultProps() {
+		return {
+			showDetails: false
+		}
 	},
 
 	getInitialState() {
@@ -24,15 +32,15 @@ const Route = React.createClass({
 
 	render() {
 
-		const { data } = this.props;
+		const { data, showDetails } = this.props;
 
 		return (
 			<Card style={{width: 300, marginBottom: 10}} initiallyExpanded={data.open}>
 				<CardHeader
 					title={data.title}
 					titleColor={data.color}
-					actAsExpander={true}
-					showExpandableButton={true}
+					actAsExpander={showDetails}
+					showExpandableButton={showDetails}
 				/>
 				<CardText expandable={false} style={{paddingTop:0}}>
 					<LinearProgress mode="determinate" value={data.fastProgress} color={data.color} style={{marginBottom:2}} />
@@ -106,7 +114,8 @@ const Route = React.createClass({
 const mapStateToProps = (state, props) => {
 
 	return {
-		playing: state.controls.playing
+		playing: state.controls.playing,
+		showDetails: state.application.type === appTypes.TYPE_MANAGER,
 	}
 };
 

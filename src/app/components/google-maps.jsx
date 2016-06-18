@@ -159,8 +159,37 @@ const GoogleMaps = React.createClass( {
 		this.setState( {
 			map: map
 		} );
+
+		this.addMarkers();
+
+		google.maps.event.addListener(map, 'click', function( event ){
+			console.log( "lat: "+event.latLng.lat()+" "+", lng: "+event.latLng.lng() );
+		});
 		
 		this.props.onReady();
+	},
+
+	addMarkers() {
+		const {markers} = this.props.maps;
+		const {map} = this.state;
+		const scale = 3;
+
+		markers.map(marker => {
+
+			const image = {
+				url: marker.icon,
+				size: new google.maps.Size(98, 98),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(marker.anchor.x/scale, marker.anchor.y/scale),
+				scaledSize: new google.maps.Size(98/scale, 98/scale)
+			};
+
+			const googleMarker = new google.maps.Marker({
+				...marker,
+				icon: image,
+				map: map
+			});
+		})
 	},
 
 	loadMaps() {

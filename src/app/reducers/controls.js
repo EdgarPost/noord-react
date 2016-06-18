@@ -1,13 +1,15 @@
 import moment from 'moment';
+import config from '~/config'
+import * as appTypes from '~/enum/app-types'
 import {SET_TIME, RESET, PLAY, PAUSE, INCREASE_SPEED, DECREASE_SPEED} from '~/actions/controls'
 
 const steps = [-250,-100,-50,-10,1,10,50,100,250,500];
 const currentStep = 6;
 
 const initialState = {
-	time: moment('2016-09-04 11:00'),
+	time: config.type === appTypes.TYPE_LIVE ? moment() : moment('2016-09-04 11:00'),
 	playing: true,
-	speed: steps[currentStep],
+	speed: config.type === appTypes.TYPE_LIVE ? 1 : steps[currentStep],
 	steps: steps,
 	currentStep: currentStep,
 	maxSpeed: steps[steps.length-1],

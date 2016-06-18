@@ -39,9 +39,13 @@ const Application = React.createClass({
 
 	renderRoutes() {
 
-		const {routes} = this.props;
+		const {routesVisible, routes} = this.props;
 
-		routes.sort((a, b) => a.distance > b.distance);
+		if(!routesVisible) {
+			return null;
+		}
+
+		routes.sort((a, b) => a.distance < b.distance);
 
 		return (
 				<div style={{position: 'fixed', right: 10, top: 10}}>
@@ -75,6 +79,7 @@ const Application = React.createClass({
 
 const mapStateToProps = (state, props) => {
 	return {
+		routesVisible: !state.application.mobile,
 		playing: state.controls.playing,
 		routes: state.routes,
 	}

@@ -5,15 +5,30 @@ import PauseIcon from "material-ui/svg-icons/av/pause";
 import ForwardIcon from "material-ui/svg-icons/av/fast-forward";
 import RewindIcon from "material-ui/svg-icons/av/fast-rewind";
 import TimePicker from 'material-ui/TimePicker';
+import * as appTypes from '~/enum/app-types'
 import Paper from "material-ui/Paper";
 import {connect} from "react-redux";
 import {pause, play, increaseSpeed, decreaseSpeed} from "../actions/controls";
 
 const Controls = React.createClass( {
 
+	propTypes: {
+		visible: React.PropTypes.bool.isRequired
+	},
+
+	getDefaultProps() {
+		return {
+			visible: true
+		}
+	},
+
 	render() {
 
-		const {controls} = this.props;
+		const {controls, visible} = this.props;
+
+		if(!visible) {
+			return null;
+		}
 
 		const toggleButton = React.createElement(controls.playing ? PauseIcon  : PlayIcon);
 
@@ -47,6 +62,7 @@ const Controls = React.createClass( {
 const mapStateToProps = ( state ) =>
 {
 	return {
+		visible: state.application.type !== appTypes.TYPE_LIVE && !state.application.mobile,
 		controls: state.controls
 	}
 };

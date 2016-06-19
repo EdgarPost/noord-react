@@ -18,14 +18,24 @@ const Application = React.createClass({
 
 	loadRoutes() {
 
+		let earliestTime;
+
 		return axios(`${config.basePath}/routes.php`).then((response) => {
 
 			_.forOwn(response.data.routes, (route, id) => {
+
+				route.startTime = moment(route.startTime);
+
+				if(!earliestTime || route.startTime.valueOf() < earliestTime.valueOf()) {
+					earliestTime = route.startTime;
+				}
+
 				this.props.loadRoute(id, {
-					...route,
-					startTime: moment(route.startTime)
+					...route
 				});
 			});
+
+			console.log(earliestTime);
 		});
 	},
 

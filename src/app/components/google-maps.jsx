@@ -172,7 +172,7 @@ const GoogleMaps = React.createClass( {
 	addMarkers() {
 		const {markers} = this.props.maps;
 		const {map} = this.state;
-		const scale = 3;
+		const scale = 2.5;
 
 		markers.map(marker => {
 

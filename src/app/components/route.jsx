@@ -35,9 +35,10 @@ const Route = React.createClass({
 		const { data, showDetails } = this.props;
 
 		return (
-			<Card style={{width: 300, marginBottom: 10}} initiallyExpanded={data.open}>
+			<Card style={{width: 320, marginBottom: 10}} initiallyExpanded={data.open}>
 				<CardHeader
 					title={data.title}
+					subtitle={`${_.round(data.fastDistance, 1)} km`}
 					titleColor={data.color}
 					actAsExpander={showDetails}
 					showExpandableButton={showDetails}

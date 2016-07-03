@@ -1,6 +1,7 @@
 import React from "react";
 import GoogleMaps from "~/components/google-maps";
 import Route from "~/components/route";
+import Legend from "~/components/legend";
 import Controls from "~/components/controls";
 import {connect} from "react-redux";
 import {loadRoute} from "~/actions/routes";
@@ -34,8 +35,7 @@ const Application = React.createClass({
 					...route
 				});
 			});
-
-			console.log(earliestTime);
+			
 		});
 	},
 
@@ -60,6 +60,7 @@ const Application = React.createClass({
 		return (
 				<div style={{position: 'fixed', right: 10, top: 10}}>
 					{routes.map(route => <Route key={route.id} data={route}/>)}
+                    <Legend />
 				</div>
 		)
 	},

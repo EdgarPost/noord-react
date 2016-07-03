@@ -38,10 +38,11 @@ const Route = React.createClass({
 			<Card style={{width: 320, marginBottom: 10}} initiallyExpanded={data.open}>
 				<CardHeader
 					title={data.title}
-					subtitle={`${_.round(data.fastDistance, 1)} km`}
+					subtitle={`Afgelegd: ${_.round(Math.min(data.distance, data.fastDistance), 1)} km`}
 					titleColor={data.color}
 					actAsExpander={showDetails}
 					showExpandableButton={showDetails}
+					avatar={data.logo}
 				/>
 				<CardText expandable={false} style={{paddingTop:0}}>
 					<LinearProgress mode="determinate" value={data.fastProgress} color={data.color} style={{marginBottom:2}} />

@@ -17,6 +17,13 @@ const muiTheme = getMuiTheme({});
 
 const Application = React.createClass({
 
+    getInitialState() {
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+    },
+
 	loadRoutes() {
 
 		let earliestTime;
@@ -39,6 +46,15 @@ const Application = React.createClass({
 		});
 	},
 
+    componentDidMount() {
+        window.addEventListener('resize', () => {
+            this.setState({
+                width: window.innerWidth,
+                height: window.innerHeight
+            })
+        })
+    },
+
 	handleGoogleMapsReady() {
 		this.loadRoutes().then(() => {
 			if (this.props.playing) {
@@ -57,8 +73,14 @@ const Application = React.createClass({
 
 		routes.sort((a, b) => a.distance < b.distance);
 
+        let scale = 1;
+
+        if(this.state.width <= 1024 || this.state.height <= 768) {
+            scale = 0.75;
+        }
+
 		return (
-				<div style={{position: 'fixed', right: 10, top: 10}}>
+				<div style={{position: 'fixed', right: 10, top: 10, transform: `scale(${scale})`, transformOrigin: 'top right'}}>
 					{routes.map(route => <Route key={route.id} data={route}/>)}
                     <Legend />
 				</div>

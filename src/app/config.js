@@ -30,13 +30,13 @@ switch(env)
 	default :
 		config = {
 			...config,
-			basePath: 'http://localhost/noord'
+      basePath: 'http://www.edgarpost.com/noord'
 		}
 		break;
 	case 'prod' :
 		config = {
 			...config,
-			basePath: 'https://www.edgarpost.com/noord'
+			basePath: 'http://www.edgarpost.com/noord'
 		};
 		break;
 }

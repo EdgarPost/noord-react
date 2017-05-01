@@ -7,7 +7,7 @@ const steps = [-250,-100,-50,-10,1,10,50,100,250,500];
 const currentStep = 6;
 
 const initialState = {
-	time: config.type === appTypes.TYPE_LIVE ? moment() : moment('2016-09-04 11:00'),
+	time: config.type === appTypes.TYPE_LIVE ? moment() : moment('2017-09-11 11:00'),
 	playing: true,
 	speed: config.type === appTypes.TYPE_LIVE ? 1 : steps[currentStep],
 	steps: steps,

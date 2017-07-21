@@ -44,13 +44,13 @@ const initialState = {
 		},
 
 		// ehbo
-		{
-			title: 'EHBO',
-			zIndex: 50,
-			icon: config.basePath + '/build/assets/icons/ehbo.png',
-			anchor: {x: 36, y: 41},
-			position: {lat: 52.42396234793983 , lng: 4.9928998947143555}
-		},
+		// {
+		// 	title: 'EHBO',
+		// 	zIndex: 50,
+		// 	icon: config.basePath + '/build/assets/icons/ehbo.png',
+		// 	anchor: {x: 36, y: 41},
+		// 	position: {lat: 52.42396234793983 , lng: 4.9928998947143555}
+		// },
 		{
 			title: 'EHBO',
 			zIndex: 50,
@@ -67,13 +67,13 @@ const initialState = {
 			anchor: {x: 48, y: 46},
 			position: {lat: 52.43244073155274 , lng: 4.995989799499512}
 		},
-		{
-			title: 'Tijdregistratie',
-			zIndex: 50,
-			icon: config.basePath + '/build/assets/icons/stopwatch.png',
-			anchor: {x: 48, y: 46},
-			position: {lat: 52.39999686572672 , lng: 4.977622032165527}
-		},
+		// {
+		// 	title: 'Tijdregistratie',
+		// 	zIndex: 50,
+		// 	icon: config.basePath + '/build/assets/icons/stopwatch.png',
+		// 	anchor: {x: 48, y: 46},
+		// 	position: {lat: 52.39999686572672 , lng: 4.977622032165527}
+		// },
 		{
 			title: 'Tijdregistratie',
 			zIndex: 50,

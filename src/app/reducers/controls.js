@@ -1,6 +1,7 @@
 import moment from "moment";
 import config from "~/config";
 import * as appTypes from "~/enum/app-types";
+
 import {
   SET_TIME,
   RESET,
@@ -15,7 +16,7 @@ const currentStep = 6;
 
 const initialState = {
   time:
-    config.type === appTypes.TYPE_LIVE ? moment() : moment("2017-09-10 11:00"),
+    config.type === appTypes.TYPE_LIVE ? moment() : moment("2022-09-04 11:00"),
   playing: true,
   speed: config.type === appTypes.TYPE_LIVE ? 1 : steps[currentStep],
   steps: steps,

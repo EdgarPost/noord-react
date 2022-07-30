@@ -3,6 +3,16 @@ import {setCenter} from "./google-maps";
 import moment from 'moment'
 import config from '~/config'
 
+import route_3251395 from '~/data/3251395.json'
+import route_3251688 from '~/data/3251688.json'
+import route_3257607 from '~/data/3257607.json'
+
+const routesJsons = {
+	3251395: route_3251395,
+	3251688: route_3251688,
+	3257607: route_3257607,
+}
+
 export const ADD_ROUTE = 'ADD_ROUTE'
 export const RECEIVE_ROUTE = 'RECEIVE_ROUTE'
 export const TOGGLE_ROUTE_ACTIVE = 'TOGGLE_ROUTE_ACTIVE'
@@ -55,22 +65,56 @@ export function updateRouteProgress(id, data) {
 
 export function loadRoute( id, options = {})
 {
+
 	return function( dispatch )
 	{
-		return axios.get(`${config.basePath}/proxy.php?id=${id}` )
-			.then( response => response.data )
-			.then( data => dispatch( receiveRoute( {
-				...data,
-				...options,
-				slowDistance: 0,
-				fastDistance: 0,
-				slowProgress: 0,
-				fastProgress: 0,
-				polylines: {
-					route: [],
-					active: []
-				}
-			} ) ) )
-			.then( actionCreator => dispatch( setCenter( actionCreator.payload.center.lat, actionCreator.payload.center.lng ) ) )
+		return new Promise((resolve) => {
+			return resolve(routesJsons[id]);
+		})
+			.then( data => {
+				const {route} = data.routes[0];
+
+				return dispatch(receiveRoute({
+					...data.routes[0].route,
+					id: route.id,
+					distance: Number(route.distance),
+					center: {
+						lat: Number(route.center_lat),
+						lng: Number(route.center_lng),
+					},
+					points: route.points.map(point => ({
+						lat: Number(point.point.lat),
+						lng: Number(point.point.lng),
+					})),
+
+					// 'id' => (int) $route->id,
+					// 'distance' => (float) $route->distance,
+					// 'center' => array(
+					// 		'lat' => (float) $route->center_lat,
+					// 		'lng' => (float) $route->center_lng,
+					// ),
+					// 'points' => array_map(function ($point) {
+					// 		return array(
+					// 				'lat' => (float) $point->point->lat,
+					// 				'lng' => (float) $point->point->lng,
+					// 		);
+					// }, $route->points),
+
+					...options,
+					slowDistance: 0,
+					fastDistance: 0,
+					slowProgress: 0,
+					fastProgress: 0,
+					polylines: {
+						route: [],
+						active: []
+					}
+				}));
+			} )
+			.then( actionCreator => {
+				return dispatch(setCenter(actionCreator.payload.center_lat, actionCreator.payload.center_lng));
+			} )
 	};
+
+	
 }

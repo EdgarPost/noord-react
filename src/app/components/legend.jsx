@@ -9,6 +9,10 @@ const Legend = React.createClass({
 
     render() {
 
+        if(this.props.labels.length === 0) {
+            return null;
+        }
+
         return (
             <Card style={{width: 320, marginBottom: 10}}>
                 <CardText style={{padding:0}}>

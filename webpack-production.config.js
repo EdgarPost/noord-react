@@ -1,19 +1,19 @@
 var webpack = require("webpack");
 var path = require("path");
-var buildPath = path.resolve(__dirname, "..", "noord-php", "build");
+var buildPath = path.resolve(__dirname,  "build");
 
 var nodeModulesPath = path.resolve(__dirname, "node_modules");
 var TransferWebpackPlugin = require("transfer-webpack-plugin");
 
 var config = {
-  entry: ["babel-polyfill", path.join(__dirname, "/src/app/bootstrap.js")],
+  entry: ["babel-polyfill", path.join(__dirname, "/src/app/app.js")],
   resolve: {
     //When require, do not have to add these extensions to file's name
     extensions: ["", ".js", ".jsx"]
     //node_modules: ["web_modules", "node_modules"]  (Default Settings)
   },
   //Render source-map file for final build
-  devtool: "source-map",
+  // devtool: "source-map",
   //output config
   output: {
     path: buildPath, //Path of output file
@@ -49,6 +49,10 @@ var config = {
         test: /\.(js|jsx)$/, //All .js and .jsx files
         loaders: ["babel"], //react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath]
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },

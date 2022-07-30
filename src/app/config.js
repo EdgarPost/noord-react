@@ -11,7 +11,7 @@ if(window.location.hostname === 'localhost')
 }
 
 let config = {
-	type: appTypes.TYPE_LIVE,
+	type: appTypes.TYPE_MANAGER,
 	mobile: isMobileOrTablet()
 };
 

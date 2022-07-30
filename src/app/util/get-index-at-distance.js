@@ -29,7 +29,6 @@ export default function getIndexAtDistance(polyline, metres) {
     const p1= polyline.getPath().getAt(i-2);
     const p2= polyline.getPath().getAt(i-1);
     const m = (metres-olddist)/(dist-olddist);
-
     return {
         point: new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*m, p1.lng() + (p2.lng()-p1.lng())*m),
         index: i-1

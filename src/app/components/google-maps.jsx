@@ -1,7 +1,7 @@
 import React from "react";
 import scriptjs from "scriptjs";
-import {connect} from "react-redux";
-import {setZoomLevel, setCenter} from "~/actions/google-maps";
+import { connect } from "react-redux";
+import { setZoomLevel, setCenter } from "~/actions/google-maps";
 import * as Colors from "material-ui/styles/colors";
 import getIndexAtDistance from "~/util/get-index-at-distance";
 import config from '~/config'
@@ -31,8 +31,8 @@ const GoogleMaps = React.createClass({
 
     componentWillReceiveProps(props) {
 
-        const {map} = this.state;
-        const {maps, routes} = props;
+        const { map } = this.state;
+        const { maps, routes } = props;
 
         if (map) {
             // map.setZoom( maps.zoom );
@@ -44,15 +44,14 @@ const GoogleMaps = React.createClass({
 
     renderIndividualRoute(route) {
 
-        const {map, polylines, activePolylines} = this.state;
-        const {controls} = this.props;
-        const {time} = controls;
+        const { map, polylines, activePolylines } = this.state;
+        const { controls } = this.props;
+        const { time } = controls;
 
         let polyline = polylines.filter(polyline => polyline.id === route.id)[0];
         let activePolyline = activePolylines.filter(activePolyline => activePolyline.id === route.id)[0];
 
-        if (typeof polyline === 'undefined') {
-
+        if (!polyline) {
             polyline = {
                 id: route.id,
                 line: new google.maps.Polyline({
@@ -65,10 +64,9 @@ const GoogleMaps = React.createClass({
                 })
             };
 
-            if (typeof route.distanceLabels !== 'undefined') {
+            if (route.distanceLabels) {
                 _.forEach(route.distanceLabels, distance => {
                     const index = getIndexAtDistance(polyline.line, distance * 1000);
-
                     const infowindow = new google.maps.InfoWindow({
                         position: index.point,
                         content: distance.toString() + 'km',
@@ -82,7 +80,7 @@ const GoogleMaps = React.createClass({
             });
         }
 
-        if (typeof activePolyline === 'undefined') {
+        if (!activePolyline) {
 
             activePolyline = {
                 id: route.id,
@@ -109,7 +107,6 @@ const GoogleMaps = React.createClass({
 
         if (slowestPoint || fastestPoint) {
             let activePart = route.points.slice(slowestPoint.index, fastestPoint.index);
-
             activePart.unshift({
                 lat: slowestPoint.point.lat(),
                 lng: slowestPoint.point.lng(),
@@ -137,15 +134,15 @@ const GoogleMaps = React.createClass({
         this.addMarkers();
 
         google.maps.event.addListener(map, 'click', function (event) {
-            console.log("lat: " + event.latLng.lat() + " " + ", lng: " + event.latLng.lng());   
+            console.log("lat: " + event.latLng.lat() + " " + ", lng: " + event.latLng.lng());
         });
 
         this.props.onReady();
     },
 
     addMarkers() {
-        const {markers} = this.props.maps;
-        const {map} = this.state;
+        const { markers } = this.props.maps;
+        const { map } = this.state;
         const scale = 2.5;
 
         markers.map(marker => {
@@ -176,7 +173,7 @@ const GoogleMaps = React.createClass({
     render() {
 
         return (
-            <div ref="maps" style={{width: '100%', height: '100%'}}></div>
+            <div ref="maps" style={{ width: '100%', height: '100%' }}></div>
         );
     },
 });

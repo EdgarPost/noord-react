@@ -1,9 +1,10 @@
 import {RECEIVE_ROUTE, TOGGLE_ROUTE_ACTIVE, SET_ROUTE_PROPERTY} from "~/actions/routes";
 import {SET_TIME} from "~/actions/controls";
 
+
 const initialState = [];
 
-function routes( state = initialState, action )
+export default function routesReducer( state = initialState, action )
 {
 
 	switch( action.type )
@@ -77,5 +78,3 @@ function routes( state = initialState, action )
 			break;
 	}
 }
-
-export default routes;

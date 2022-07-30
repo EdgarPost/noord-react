@@ -10,7 +10,7 @@ var config = {
 		'webpack/hot/dev-server',
 		'webpack/hot/only-dev-server',
 		'babel-polyfill',
-		path.join( __dirname, '/src/app/bootstrap.js' )
+		path.join( __dirname, '/src/app/app.js' )
 	],
 	//Config options on how to interpret requires imports
 	resolve: {
@@ -29,7 +29,7 @@ var config = {
 	devtool: 'eval',
 	output: {
 		path: buildPath,    //Path of output file
-		filename: 'bootstrap.js'
+		filename: 'app.js'
 	},
 	plugins: [
 		//Enables Hot Modules Replacement
@@ -59,7 +59,10 @@ var config = {
 				loaders: ['react-hot', 'babel'], //react-hot is like browser sync and babel loads jsx and es6-7
 				exclude: [nodeModulesPath]
 			},
-
+			{
+        test: /\.json$/,
+        loader: 'json-loader'
+      }
 		]
 	},
 	//eslint config options. Part of the eslint-loader package

@@ -33,7 +33,7 @@ const Route = React.createClass({
 	render() {
 
 		const { data, showDetails } = this.props;
-
+// debugger;
 		return (
 			<Card style={{width: 320, marginBottom: 10}} initiallyExpanded={data.open}>
 				<CardHeader

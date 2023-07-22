@@ -3,15 +3,17 @@ import {setCenter} from "./google-maps";
 import moment from 'moment'
 import config from '~/config'
 
-import route_3251395 from '~/data/3251395.json'
-import route_3251688 from '~/data/3251688.json'
-import route_3257607 from '~/data/3257607.json'
+import route_3419289 from '~/data/3419289.json' // 30 KM
+import route_3423869 from '~/data/3423869.json' // 20 KM
+import route_3251688 from '~/data/3251688.json' // 10 KM
 
 const routesJsons = {
-	3251395: route_3251395,
-	3251688: route_3251688,
-	3257607: route_3257607,
+	3419289: route_3419289, // 30 KM
+	3423869: route_3423869, // 20 KM
+	3251688: route_3251688, // 10 KM
 }
+
+console.log(routesJsons);
 
 export const ADD_ROUTE = 'ADD_ROUTE'
 export const RECEIVE_ROUTE = 'RECEIVE_ROUTE'

@@ -1,0 +1,38 @@
+{
+    "3419289": {
+        "color": "#66BB6A",
+        "enabled": true,
+        "fastSpeed": 16.5,
+        "logo": "assets/logos/plus.png",
+        "open": false,
+        "size": 10,
+        "slowSpeed": 8.6,
+        "startTime": "2022-09-04 11:30",
+        "title": "PLUS HalveMarathon"
+    },
+    "3423869": {
+        "color": "#EF5350",
+        "distanceLabels": [
+            
+        ],
+        "enabled": true,
+        "fastSpeed": 17,
+        "logo": "assets/logos/adam-marathon.png",
+        "open": false,
+        "size": 6,
+        "slowSpeed": 8.6,
+        "startTime": "2022-09-04 11:00",
+        "title": "30km TCS Adam Marathon"
+    },
+    "3251688": {
+        "color": "#42A5F5",
+        "enabled": true,
+        "fastSpeed": 16,
+        "logo": "assets/logos/runnersworld.png",
+        "open": false,
+        "size": 18,
+        "slowSpeed": 8.6,
+        "startTime": "2022-09-04 12:05",
+        "title": "10KM Runnersworld"
+    }
+}
